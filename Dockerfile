@@ -14,7 +14,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 FROM python:3.9.6-slim-buster AS release
-WORKDIR /code/
+VOLUME ["/soildata"]
+ WORKDIR /code/
 ENV PATH="/opt/.venv/bin:$PATH"
 # Copy only virtualenv with all packages
 COPY --from=build-base /opt/.venv /opt/.venv
