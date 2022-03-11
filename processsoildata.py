@@ -37,14 +37,13 @@ def processdata():
     SOIL_INFLUX_URL = os.environ["INFLUX_URL"]
     SOIL_INFLUX_BATCH_SIZE = os.environ["INFLUX_BATCH_SIZE"]
     SOIL_DATA_LOCATION = os.environ['SOIL_DATA_LOCATION']
-    SOIL_DATA_GLOB = "/ftp.ncdc.noaa.gov/pub/data/uscrn/products/hourly02/**/CRNH0203-????-*.txt"
 
     influx_client = InfluxDBClient(url=SOIL_INFLUX_URL, token=SOIL_INFLUX_TOKEN, org=SOIL_INFLUX_ORG)
     influx_write_api = influx_client.write_api(write_options=SYNCHRONOUS,batch_size=SOIL_INFLUX_BATCH_SIZE, flush_interval=10_000, jitter_interval=2_000, retry_interval=5_000)
 
 
     print("Retreiving list of files to processs")
-    files = glob.glob(SOIL_DATA_LOCATION + SOIL_DATA_GLOB)
+    files = glob.glob(SOIL_DATA_LOCATION)
     for f in files:
         print("Processing file: {}".format(f))
         df = pd.read_fwf(
