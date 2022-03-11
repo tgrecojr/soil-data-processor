@@ -1,4 +1,4 @@
-FROM python:3.9.6-slim-buster AS build-base
+FROM python:3.9.10-slim-buster AS build-base
 RUN python3 -m venv /opt/.venv
 # ensure that virtualenv will be active
 ENV PATH="/opt/.venv/bin:$PATH"
@@ -13,7 +13,7 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-FROM python:3.9.6-slim-buster AS release
+FROM python:3.9.10-slim-buster AS release
 VOLUME ["/soildata"]
 WORKDIR /code/
 ENV PATH="/opt/.venv/bin:$PATH"
