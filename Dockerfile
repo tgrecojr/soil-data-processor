@@ -22,4 +22,4 @@ COPY --from=build-base /opt/.venv /opt/.venv
 # Run the application:
 COPY fieldmappings.py fieldmappings.py
 COPY processsoildata.py processsoildata.py
-CMD ["python", "processsoildata.py"]
+#CMD ["python", "processsoildata.py"]
