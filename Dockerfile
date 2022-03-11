@@ -19,5 +19,6 @@ ENV PATH="/opt/.venv/bin:$PATH"
 # Copy only virtualenv with all packages
 COPY --from=build-base /opt/.venv /opt/.venv
 # Run the application:
-COPY *.py .
+COPY fieldmappings.py fieldmappings.py
+COPY processsoildata.py processsoildata.py
 CMD ["python", "processsoildata.py"]
