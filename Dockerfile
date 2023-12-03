@@ -1,25 +1,21 @@
-FROM python:3.11.6-slim-bookworm AS build-base
-RUN python3 -m venv /opt/.venv
-# ensure that virtualenv will be active
-ENV PATH="/opt/.venv/bin:$PATH"
-
+# Build a virtualenv using the appropriate Debian release
+# * Install python3-venv for the built-in Python3 venv module (not installed by default)
+# * Install gcc libpython3-dev to compile C Python modules
+# * In the virtualenv: Update pip setuputils and wheel to support building new packages
+FROM debian:11-slim AS build
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get -y install --no-install-recommends libpq-dev build-essential && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
+    python3 -m venv /venv && \
+    /venv/bin/pip install --upgrade pip setuptools wheel
 
-# Install dependencies:
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Build the virtualenv as a separate step: Only re-execute this step when requirements.txt changes
+FROM build AS build-venv
+COPY requirements.txt /requirements.txt
+RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
-FROM python:3.11.6-slim-bookworm AS release
-VOLUME ["/soildata"]
-WORKDIR /code/
-ENV PATH="/opt/.venv/bin:$PATH"
-# Copy only virtualenv with all packages
-COPY --from=build-base /opt/.venv /opt/.venv
-# Run the application:
-COPY fieldmappings.py fieldmappings.py
-COPY processsoildata.py processsoildata.py
-CMD ["python", "processsoildata.py"]
+# Copy the virtualenv into a distroless image
+FROM gcr.io/distroless/python3-debian11
+COPY --from=build-venv /venv /venv
+COPY . /app
+WORKDIR /app
+ENTRYPOINT ["/venv/bin/python3", "processsoildata.py"]
