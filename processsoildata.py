@@ -8,7 +8,6 @@ import numpy as np
 import os
 import sys
 import glob
-import time
 
 def formatdate(date,time):
     localdatetime = date + time
@@ -31,7 +30,7 @@ def converttofarenheit(celsius_value):
 def processdata():
 
     start_time = datetime.now()
-
+    
     SOIL_INFLUX_TOKEN = os.environ["INFLUX_TOKEN"]
     SOIL_INFLUX_ORG = os.environ["INFLUX_ORG"]
     SOIL_INFLUX_BUCKET = os.environ["INFLUX_BUCKET"]
@@ -72,12 +71,11 @@ def processdata():
         #selected_columns = df[["LOCAL_DATETIME","SOIL_TEMP_5","SOIL_TEMP_10","SOIL_TEMP_20","SOIL_TEMP_50","SOIL_TEMP_100","T_CALC","T_HR_AVG","WBANNO"]]
         #slim_df  = selected_columns.copy()
         influx_write_api.write(SOIL_INFLUX_BUCKET, record=df,data_frame_measurement_name='soildata',data_frame_tag_columns=['WBANNO'])
-   
+
     end_time = datetime.now()
     time_taken = end_time - start_time
     print(f"Processed Soil Temps in {time_taken}")
-   
-    
+
     
 def main():
     
