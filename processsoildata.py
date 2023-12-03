@@ -74,6 +74,7 @@ def processdata():
         influx_write_api.write(SOIL_INFLUX_BUCKET, record=df,data_frame_measurement_name='soildata',data_frame_tag_columns=['WBANNO'])
         influx_write_api.flush()
         influx_write_api.close()
+        sys.exit(0)
 
     end_time = datetime.now()
     time_taken = end_time - start_time
