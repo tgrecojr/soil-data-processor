@@ -13,7 +13,7 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-FROM gcr.io/distroless/python3-debian12 AS release
+FROM python:3.11.6-slim-bookworm AS release
 VOLUME ["/soildata"]
 WORKDIR /code/
 ENV PATH="/opt/.venv/bin:$PATH"
