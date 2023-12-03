@@ -70,12 +70,14 @@ def processdata():
         
         #selected_columns = df[["LOCAL_DATETIME","SOIL_TEMP_5","SOIL_TEMP_10","SOIL_TEMP_20","SOIL_TEMP_50","SOIL_TEMP_100","T_CALC","T_HR_AVG","WBANNO"]]
         #slim_df  = selected_columns.copy()
+        print(df)
         influx_write_api.write(SOIL_INFLUX_BUCKET, record=df,data_frame_measurement_name='soildata',data_frame_tag_columns=['WBANNO'])
+
 
     end_time = datetime.now()
     time_taken = end_time - start_time
     print(f"Processed Soil Temps in {time_taken}")
-
+    influx_client.close()
     
 def main():
     
