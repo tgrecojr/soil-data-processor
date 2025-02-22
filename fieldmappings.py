@@ -107,7 +107,7 @@ col_types = {
     'SUR_TEMP_MAX_FLAG': object, 
     'SUR_TEMP_MIN': object, 
     'SUR_TEMP_MIN_FLAG': object, 
-    'RH_HR_AVG': object, 
+    'RH_HR_AVG': np.double, 
     'RH_HR_AVG_FLAG': object, 
     'SOIL_MOISTURE_5': np.double, 
     'SOIL_MOISTURE_10': np.double, 
