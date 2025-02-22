@@ -19,7 +19,6 @@ jobs:
         sudo apt update
         sudo apt install -y postgresql postgresql-contrib postgresql-dev
         
-        
     - uses: actions/checkout@v3
     
     - name: Set up QEMU
