@@ -18,6 +18,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y postgresql postgresql-contrib postgresql-client
+        export PKG_CONFIG_PATH=PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig:/usr/share/pkgconfig
         
     - uses: actions/checkout@v3
     
