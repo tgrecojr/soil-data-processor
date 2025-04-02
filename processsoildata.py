@@ -44,7 +44,8 @@ def processdata():
             header=None,
             index_col=False,
             dtype=fieldmappings.col_types,
-            memory_map=True)
+            memory_map=True,
+            skip_blank_lines=True)
 
         df['UTC_DATETIME'] = df.apply(lambda row: formatdate(row['UTC_DATE'],row['UTC_TIME']), axis=1)
         df['LOCAL_DATETIME'] = df.apply(lambda row: formatdate(row['LST_DATE'],row['LST_TIME']), axis=1)
