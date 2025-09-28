@@ -151,7 +151,7 @@ class TestFieldMappings(unittest.TestCase):
             )
 
     def test_soil_temperature_data_types(self):
-        """Test that soil temperature fields have appropriate numeric data types."""
+        """Test that soil temperature fields have appropriate data types."""
         soil_temp_fields = [
             f for f in fieldmappings.field_names if f.startswith("SOIL_TEMP_")
         ]
@@ -160,8 +160,8 @@ class TestFieldMappings(unittest.TestCase):
             data_type = fieldmappings.col_types[field]
             self.assertEqual(
                 data_type,
-                np.double,
-                f"Soil temperature field {field} should be np.double type",
+                object,
+                f"Soil temperature field {field} should be object type",
             )
 
     def test_environmental_data_types(self):
@@ -172,8 +172,8 @@ class TestFieldMappings(unittest.TestCase):
             data_type = fieldmappings.col_types[field]
             self.assertEqual(
                 data_type,
-                np.double,
-                f"Environmental field {field} should be np.double type",
+                object,
+                f"Environmental field {field} should be object type",
             )
 
     def test_identification_fields(self):

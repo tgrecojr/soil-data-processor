@@ -92,7 +92,7 @@ class TestTableCreation(unittest.TestCase):
         calls = mock_cursor.execute.call_args_list
         table_create_call = calls[0][0][0]
 
-        self.assertIn("CREATE TABLE soildata", table_create_call)
+        self.assertIn("CREATE TABLE IF NOT EXISTS soildata", table_create_call)
         self.assertIn("time TIMESTAMPTZ NOT NULL", table_create_call)
         self.assertIn("PRIMARY KEY(time)", table_create_call)
 

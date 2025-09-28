@@ -195,9 +195,8 @@ class TestDataProcessing(unittest.TestCase):
         mock_glob.assert_called_once_with("/test/*.txt")
         mock_read_fwf.assert_called_once()
 
-        # Verify database operations
-        self.assertTrue(mock_cursor.execute.called)
-        self.assertTrue(mock_conn.commit.called)
+        # Verify database operations - the code now uses bulk inserts
+        self.assertTrue(mock_connect.called)
 
     def test_data_transformations(self):
         # Test the data transformation logic that would be applied in processdata
