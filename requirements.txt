@@ -1,3 +1,13 @@
 pandas
 numpy
 psycopg2-binary
+structlog>=23.0.0
+
+# Testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+
+# Code quality dependencies (for CI)
+black>=23.0.0
+flake8>=6.0.0
