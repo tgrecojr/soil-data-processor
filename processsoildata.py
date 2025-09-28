@@ -344,5 +344,41 @@ def main():
     logger.info("Soil Data Processor completed successfully")
 
 
+
+# Individual functions for backward compatibility with tests
+def formatdate(date_str, time_str):
+    """Convert date and time strings to datetime object."""
+    import pandas as pd
+
+    # Convert to pandas Series for vectorized function
+    dates = pd.Series([date_str])
+    times = pd.Series([time_str])
+    result = formatdate_vectorized(dates, times)
+    return result.iloc[0] if not pd.isna(result.iloc[0]) else None
+
+
+def removevaluesnotrecorded(value):
+    """Remove invalid values, returning None for invalid values."""
+    import pandas as pd
+
+    # Convert to pandas Series for vectorized function
+    series = pd.Series([value])
+    result = remove_invalid_values_vectorized(series)
+    return result.iloc[0] if not pd.isna(result.iloc[0]) else None
+
+
+def converttofarenheit(celsius):
+    """Convert Celsius to Fahrenheit."""
+    import pandas as pd
+
+    if celsius is None:
+        return None
+
+    # Convert to pandas Series for vectorized function
+    series = pd.Series([celsius])
+    result = celsius_to_fahrenheit_vectorized(series)
+    return result.iloc[0] if not pd.isna(result.iloc[0]) else None
+
+
 if __name__ == "__main__":
     main()
