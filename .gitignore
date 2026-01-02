@@ -170,3 +170,6 @@ pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,virtualenv
 .vscode/settings.json
+
+# Claude Code local settings
+.claude/settings.local.json

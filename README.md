@@ -1,6 +1,6 @@
 # 🌱 Soil Data Processor
 
-[![Docker Image CI](https://github.com/tgrecojr/get-soil-data-internal/actions/workflows/docker-image.yml/badge.svg)](https://github.com/tgrecojr/get-soil-data-internal/actions/workflows/docker-image.yml)
+[![Docker Image CI](https://github.com/tgrecojr/soil-data-processor/actions/workflows/docker-image.yml/badge.svg)](https://github.com/tgrecojr/soil-data-processor/actions/workflows/docker-image.yml)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -46,8 +46,8 @@ The application follows a traditional ETL pattern:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/tgrecojr/get-soil-data-internal.git
-cd get-soil-data-internal
+git clone https://github.com/tgrecojr/soil-data-processor.git
+cd soil-data-processor
 
 # 2. Build the Docker image
 docker build -t soil-data-processor .
@@ -60,8 +60,8 @@ docker run --env-file .env soil-data-processor
 
 ```bash
 # 1. Clone and setup
-git clone https://github.com/tgrecojr/get-soil-data-internal.git
-cd get-soil-data-internal
+git clone https://github.com/tgrecojr/soil-data-processor.git
+cd soil-data-processor
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -196,7 +196,7 @@ spec:
     spec:
       containers:
       - name: processor
-        image: ghcr.io/tgrecojr/soildataprocessor:latest
+        image: ghcr.io/tgrecojr/soil-data-processor:latest
         envFrom:
         - secretRef:
             name: soil-processor-secrets
@@ -357,8 +357,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions, issues, or contributions:
 
-- **Issues**: [GitHub Issues](https://github.com/tgrecojr/get-soil-data-internal/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/tgrecojr/get-soil-data-internal/discussions)
+- **Issues**: [GitHub Issues](https://github.com/tgrecojr/soil-data-processor/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/tgrecojr/soil-data-processor/discussions)
 - **Documentation**: See [CLAUDE.md](CLAUDE.md) for detailed technical documentation
 
 ---
